@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Name form</title>
+  <style>
+    :root { color-scheme: light; font: 16px/1.5 system-ui, sans-serif; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #f4f6f8; color: #18212b; }
+    main { width: min(28rem, calc(100% - 2rem)); padding: 2rem; background: white; border: 1px solid #dce2e8; border-radius: 12px; box-shadow: 0 8px 28px #172b4d12; }
+    h1 { margin: 0 0 .25rem; font-size: 1.5rem; }
+    p { margin: 0 0 1.25rem; color: #52606d; }
+    label { display: block; margin-top: 1rem; font-weight: 600; }
+    input { box-sizing: border-box; width: 100%; margin-top: .35rem; padding: .7rem .75rem; border: 1px solid #aab5c0; border-radius: 6px; font: inherit; }
+    input:focus { outline: 3px solid #b6d4fe; border-color: #2876d2; }
+    button { margin-top: 1.25rem; padding: .7rem 1rem; border: 0; border-radius: 6px; background: #1769c2; color: white; font: inherit; font-weight: 650; cursor: pointer; }
+    button:hover { background: #1256a0; }
+    #result { margin-top: 1rem; color: #17633a; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Your name</h1>
+    <p>Enter your first, middle, and last name.</p>
+    <form id="name-form">
+      <label for="first-name">First name</label>
+      <input id="first-name" name="firstName" autocomplete="given-name" required>
+
+      <label for="middle-name">Middle name</label>
+      <input id="middle-name" name="middleName" autocomplete="additional-name" required>
+
+      <label for="last-name">Last name</label>
+      <input id="last-name" name="lastName" autocomplete="family-name" required>
+
+      <button type="submit">Submit</button>
+      <div id="result" role="status" aria-live="polite"></div>
+    </form>
+  </main>
+  <script>
+    const form = document.querySelector('#name-form');
+    const result = document.querySelector('#result');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const data = new FormData(form);
+      const first = data.get('firstName').trim();
+      const middle = data.get('middleName').trim();
+      const last = data.get('lastName').trim();
+      result.textContent = `Thanks, ${first} ${middle} ${last}!`;
+    });
+  </script>
+</body>
+</html>

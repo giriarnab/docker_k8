@@ -1,0 +1,17 @@
+{
+  "name": "name-form",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A simple first, middle, and last name form",
+  "engines": {
+    "node": "20.x"
+  },
+  "main": "index.js",
+  "scripts": {
+    "run-init": "npm init -y"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
